@@ -2,7 +2,6 @@ Name:		droid-hal-tools
 Version:	0.0.1
 Release:	1%{?dist}
 Summary:	Some tools from android
-
 Group:		Tools
 License:	ASL 2.0
 URL:		https://android.googlesource.com/
@@ -16,12 +15,12 @@ that it can be installed on the device and is not meant to be used in host/sdk
 environment.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}
 
 %build
-make -f %{_builddir}/mkbootimg.mk -C droid-core/mkbootimg/
-make -f %{_builddir}/simg2img.mk -C droid-core/libsparse/
-make -f %{_builddir}/img2simg.mk -C droid-core/libsparse/
+make -f `pwd`/mkbootimg.mk -C droid-core/mkbootimg/
+make -f `pwd`/simg2img.mk -C droid-core/libsparse/
+make -f `pwd`/img2simg.mk -C droid-core/libsparse/
 
 %install
 rm -rf $RPM_BUILD_ROOT
